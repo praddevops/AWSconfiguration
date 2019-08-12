@@ -22,7 +22,6 @@
   - debug:
      msg:
       - "{{ priv_ip }}"
-# update above task to capture the output - register
-# create a task to get the private ip of the new instance
-# create a task to register new instance in the hosts (using add_host module)
-# install apache/httpd on all instances
+# ex2 task to create EC2 instance and capture the output using - register
+# created a task - set_fact -  to get the private ip of the new instance and store it in a variable
+# created a task to register new instance in the hosts (using add_host module)
