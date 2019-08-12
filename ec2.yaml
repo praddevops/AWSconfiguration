@@ -12,13 +12,16 @@
      assign_public_ip: yes
      region: us-east-1
     register: ec2
-#  - name: Add host to group 'webservers'
-#    add_host:
-#     name: 172.64.32.1
-#     groups: webservers
+  - name: set a variable for ec2's private ip
+    set_fact:
+     priv_ip: "{{ ec2.instances[0].private_ip }}"
+  - name: Add host to group 'webservers'
+    add_host:
+     hostname: "{{ priv_ip }}"
+     groups: webservers
   - debug:
      msg:
-      - "{{ ec2.instances }}"
+      - "{{ priv_ip }}"
 # update above task to capture the output - register
 # create a task to get the private ip of the new instance
 # create a task to register new instance in the hosts (using add_host module)
