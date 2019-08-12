@@ -1,0 +1,25 @@
+- hosts: localhost
+  tasks:
+  - ec2:
+     key_name: Jun2KeyPair
+     instance_type: t2.micro
+     image: ami-035b3c7efe6d061d5
+     wait: yes   
+     count: 1
+     instance_tags:
+       Name: three
+     vpc_subnet_id: subnet-ffbfdea3
+     assign_public_ip: yes
+     region: us-east-1
+    register: ec2
+#  - name: Add host to group 'webservers'
+#    add_host:
+#     name: 172.64.32.1
+#     groups: webservers
+  - debug:
+     msg:
+      - "{{ ec2.instances }}"
+# update above task to capture the output - register
+# create a task to get the private ip of the new instance
+# create a task to register new instance in the hosts (using add_host module)
+# install apache/httpd on all instances
